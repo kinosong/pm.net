@@ -21,3 +21,24 @@ init.bat
 与pm2不同的是，PM.Net并没有提供命令行工具，而是使用WebUI进行交互式管理。可以访问这里：http://localhost:12345
 
 然后使用初始用户`admin`，密码`admin`进行登录。
+
+## Web API
+Base URL: api/apps
+
+- POST 创建app
+  - type: 0 static, 1 general, 2 core
+  - name: 必须唯一
+  - status: 0 offline, 1 online, 2 starting, 3 stopping
+  - description
+  - directory: app目录
+  - path: app的入口文件
+  - urls: listener url 
+- GET 获取app列表
+- GET /{name} 获取app详情
+- PUT /{name} 启动/停止app
+  - status: 0 offline, 1 online
+- DELETE /{name} 删除app（文件不会被删除）
+- POST /{name}/pack 上传程序包，更新app
+  - form data
+  - file: 程序包
+  - full: 是否删除服务器上app所有文件。
